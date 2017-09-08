@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <regex.h>
 #include <sys/stat.h>
 
 #define ENCODE 0
@@ -158,6 +157,10 @@ char *decode(char *base64)
     return plainbytes;
 }
 
+/* 
+ * process text from stdio
+ * @operation: ENCODE->encode text, DECODE->decode text
+ */
 void base64_stdio(int operation) 
 {
     size_t nbytes;
@@ -183,6 +186,10 @@ void base64_stdio(int operation)
     }
 }
 
+/* 
+ * encode binary file
+ * @file: absolute or relative path of file
+ */
 void base64_file(const char *file) 
 {
     // file size should less than 5 MB
@@ -215,6 +222,9 @@ void base64_file(const char *file)
     }
 }
 
+/* 
+ * display help information
+ */
 void show_tips(int exit_code)
 {
     fprintf(stdout, "Usage: base64 <-h|-e|-d|file>\n");
