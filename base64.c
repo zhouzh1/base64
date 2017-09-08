@@ -43,7 +43,7 @@ int binary_to_decimal(const char *binary)
 
 /* 
  * check valid base64 string
- * @base64: a null-terminated base64 string(tail '=' has been removed) to be decoded
+ * @base64: a null-terminated base64 string to be decoded
  */
 int is_valid_base64(const char *base64)
 {
@@ -55,7 +55,6 @@ int is_valid_base64(const char *base64)
         char c;
         for (i = 0; (c = base64[i]) != '\0'; i++) {
             if (strchr(encode_chars, c) == NULL) {
-                //return 0;   
                 if (c == '=') {
                     if (i < len - 2) {
                         return 0;
