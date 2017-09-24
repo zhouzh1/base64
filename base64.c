@@ -105,7 +105,7 @@ char *encode(char *plainbytes, size_t len)
         }
     }
     int extra_bytes = 3 - len % 3;
-    while (extra_bytes > 0) {
+    while (extra_bytes >= 0) {
         base64bytes_count += 1;
         base64 = realloc(base64, base64bytes_count);
         base64[base64bytes_count - 1] = extra_bytes == 0 ? '\0': '=';
@@ -182,6 +182,8 @@ void base64_stdio(int operation)
         printf("%s", output);
         free(input);
         free(output);
+    } else if (bytes_read == 1) {
+        exit(EXIT_FAILURE);
     }
 }
 
